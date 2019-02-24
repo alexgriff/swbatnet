@@ -1,9 +1,10 @@
 defmodule SwbatnetWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :swbatnet
 
-  socket "/socket", SwbatnetWeb.UserSocket,
-    websocket: [timeout: 45_000],
-    longpoll: false
+  socket "/socket", SwbatnetWeb.UserSocket
+    # Temp removed for heroku debugging
+    # websocket: [timeout: 45_000],
+    # longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
