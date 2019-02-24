@@ -6,6 +6,7 @@ defmodule Swbatnet.Reviews.Review do
   schema "reviews" do
     field :name, :string
     field :assessments, {:array, :map}
+    has_many :submissions, Swbatnet.Submissions.Submission
 
     timestamps()
   end

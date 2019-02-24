@@ -3,7 +3,6 @@ defmodule SwbatnetWeb.AuthController do
   alias SwbatnetWeb.User
   plug Ueberauth
 
-
   def callback(conn, _params) do
     %{
       assigns: %{
