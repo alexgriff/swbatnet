@@ -1,0 +1,31 @@
+<div class="ui container">
+  <div class="page-header">
+    <h1>SWBATnet</h1>
+    <h4>(Student Will Be Able To) net</h4>
+  </div>
+
+  <h3>
+    Lecture:
+    <code><%= @review.name %></code>
+  </h3>
+  <p>Take a moment and do a self-assessment on how you are feeling about each of the following topics</p>
+
+  <%= form_for @conn, "/submissions", [as: :submission], fn f -> %>
+    <%= for assessment <- @review.assessments do %>
+      <div class="form-group" style="padding: 10px">
+        <%= if assessment["type"] == "assessment" do %>
+          <h4 class="text-center"><%= assessment["content"] %></h4>
+          <%= for ({num, opt}) <- assessment_options() do %>
+          <div class=<%= option_background(num) %> style="padding: 3px">
+            <%= radio_button(f, assessment["content"], num) %>
+            <%= opt %>
+          </div>
+          <% end %>
+        <%= else %>
+          <h4><%= assessment["content"] %></h4>
+        <% end %>
+      </div>
+    <% end %>
+    <%= submit "Submit My Self Assessment", class: "btn btn-primary" %>
+  <% end %>
+</div>

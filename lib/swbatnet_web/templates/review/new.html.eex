@@ -1,0 +1,21 @@
+  <%= form_for @conn, "/admin/reviews", [as: :review], fn f -> %>
+    <div class="form-group">
+      <%= label f, :repository_url, class: "control-label" %>
+      <%= text_input f, :repository_url, class: "form-control", placeholder: 'learn-co-students/nyc-web-012819' %>
+      <p class="help-block">Enter org-name/repo-name </p>
+    <div>
+
+    <div class="form-group">
+      <%= label f, :dir_number, class: "control-label" %>
+      <%= text_input f, :dir_number, class: "form-control", placeholder: '02' %>
+      <p class="help-block">No need to enter the whole directory name. Just the number it starts with</p>
+    <div>
+
+    <div class="form-group">
+      <%= label f, :filename, class: "control-label" %>
+      <%= text_input f, :filename, class: "form-control", placeholder: 'LEARNING_GOALS.md' %>
+      <p class="help-block">The default value is 'LEARNING_GOALS.md'. Only fill this out if your file is named something else</p>
+    <div>
+
+    <%= submit "Create Self-Review Form", class: "btn btn-default" %>
+  <% end %>

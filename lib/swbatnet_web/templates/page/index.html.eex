@@ -1,0 +1,16 @@
+<div>
+  <div class="page-header">
+    <h1>SWBATnet</h1>
+  </div>
+    <p>
+      You must be an admin of the
+      <code>learn-co-students</code>
+      Github Organization to access the SWBATnet dashboard
+   </p>
+    <a
+      class="btn btn-info"
+      href="auth/github"
+    >
+    Login with Github
+  </a>
+</div>
