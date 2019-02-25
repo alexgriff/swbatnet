@@ -3,25 +3,28 @@
     <h1>SWBATnet</h1>
     <h4>(Student Will Be Able To) net</h4>
   </div>
+  <%= if admin_signed_in?(@conn) do %>
+    <%= link("See Admin Results Dashboard", to: "/admin/reviews/#{@review.id}/submissions", class: "btn btn-info") %>
+  <% end %>
 
   <h3>
     Lecture:
     <code><%= @review.name %></code>
   </h3>
-  <p>Take a moment and do a self-assessment on how you are feeling about each of the following topics</p>
+  <p>Take a moment and perform a self-assessment. For each of the following topics choose the option that best describes how you are feeling. No answer is right or wrong. This is 100% anonymous.</p>
 
-  <%= form_for @conn, "/submissions", [as: :submission], fn f -> %>
+  <%= form_for @conn, "/reviews/#{@review.id}/submissions", [as: :submission], fn f -> %>
     <%= for assessment <- @review.assessments do %>
       <div class="form-group" style="padding: 10px">
         <%= if assessment["type"] == "assessment" do %>
           <h4 class="text-center"><%= assessment["content"] %></h4>
           <%= for ({num, opt}) <- assessment_options() do %>
-          <div class=<%= option_background(num) %> style="padding: 3px">
-            <%= radio_button(f, assessment["content"], num) %>
-            <%= opt %>
-          </div>
+            <div class=<%= option_background(num) %> style="padding: 3px">
+              <%= radio_button(f, assessment["content"], num) %>
+              <%= opt %>
+            </div>
           <% end %>
-        <%= else %>
+        <% else %>
           <h4><%= assessment["content"] %></h4>
         <% end %>
       </div>

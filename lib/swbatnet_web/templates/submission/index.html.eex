@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>SWBATnet</h1>
+</div>
+<%= link "Back to Review", to: "/reviews/#{@review.id}", class: "btn btn-info"%>
+<h3>
+  Lecture:
+  <code><%= @review.name %></code>
+</h3>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <%= for value <- column_headers() do %>
+        <th><%= value %></th>
+      <% end %>
+    </tr>
+    <%= for row <- rows(@review) do %>
+      <tr>
+        <%= for value <- row do %>
+          <td><%= value %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </thead>
+</table>

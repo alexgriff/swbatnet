@@ -4,7 +4,7 @@ defmodule Swbatnet.Submissions.Submission do
 
 
   schema "submissions" do
-    field :results, {:array, :map}
+    field :results, :map
     belongs_to :review, Swbatnet.Reviews.Review
 
     timestamps()

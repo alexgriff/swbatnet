@@ -1,6 +1,5 @@
 defmodule SwbatnetWeb.ReviewController do
   use SwbatnetWeb, :controller
-  require IEx
 
   def new(conn, _params) do
     render conn, "new.html"

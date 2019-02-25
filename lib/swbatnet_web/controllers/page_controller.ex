@@ -8,4 +8,8 @@ defmodule SwbatnetWeb.PageController do
   def unauthorized(conn, _params) do
     render conn, "unauthorized.html"
   end
+
+  def thanks(conn, _params) do
+    render(conn, "thanks.html")
+  end
 end

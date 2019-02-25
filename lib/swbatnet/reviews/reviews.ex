@@ -4,6 +4,17 @@ defmodule Swbatnet.Reviews do
 
   def find(id), do: Repo.get(Review, id)
 
+  def find_with_submissions(id) do
+    find(id)
+    |> Repo.preload(:submissions)
+  end
+
+  def assessments_for(%Review{} = review) do
+    review.assessments
+    |> Enum.filter(fn a -> a["type"] == "assessment" end)
+    |> Enum.map(fn r -> r["content"] end)
+  end
+
   def create(assessments, repo_name, dir_number) do
     attrs = %{
       assessments: jsonify_assessments(assessments),

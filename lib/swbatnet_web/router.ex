@@ -19,7 +19,7 @@ defmodule SwbatnetWeb.Router do
   end
 
   scope "/auth", SwbatnetWeb do
-    pipe_through [:browser]
+    pipe_through :browser
 
     get "/github", AuthController, :request
     get "/github/callback", AuthController, :callback
@@ -31,16 +31,21 @@ defmodule SwbatnetWeb.Router do
 
     get "/reviews/new", ReviewController, :new
     post "/reviews", ReviewController, :create
+    get "/reviews/:id/submissions", SubmissionController, :index
   end
 
   scope "/reviews", SwbatnetWeb do
     pipe_through :browser
+
     get "/:id", ReviewController, :show
+    post "/:id/submissions", SubmissionController, :create
   end
 
   scope "/", SwbatnetWeb do
     pipe_through :browser # Use the default browser stack
+
     get "/unauthorized", PageController, :unauthorized
+    get "/thanks", PageController, :thanks
     get "/", PageController, :index
   end
 
