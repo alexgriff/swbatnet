@@ -19,3 +19,45 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+import Plotly from "plotly.js-dist"
+export var App = {
+  makePlot: (id, histogramData, keysInOrder, columnHeaders) => {
+    var hisogramTransposed = App.transposeHistogram(histogramData)
+    var chart_data = []
+    for (var i = 0; i < columnHeaders.length; i++) {
+      chart_data.push({
+        x: App.generateArray(keysInOrder),
+        y: hisogramTransposed[i],
+        name: columnHeaders[i],
+        type: 'bar'
+      })
+    }
+
+    var layout = {barmode: 'group'};
+
+    Plotly.newPlot(id, chart_data, layout);
+  },
+  htmlDecodeAsJSON: (input) => {
+    var e = document.createElement('textarea');
+    e.innerHTML = input;
+    // handle case of empty input
+    return JSON.parse(e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue);
+  },
+  transposeHistogram: (obj) => {
+    var newObj = {0: [], 1: [], 2: [], 3: []}
+    Object.keys(obj).forEach((lg) => {
+      Object.keys(newObj).forEach((index) => {
+        newObj[index].push(obj[lg][index])
+      })
+    })
+    return newObj
+  },
+  generateArray: (obj) => {
+    var arr = []
+    for (var i = 0; i <= Object.keys(obj).length; i++) {
+      arr.push(obj[i])
+    }
+    return arr
+  }
+}

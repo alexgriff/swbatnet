@@ -5,10 +5,25 @@ defmodule SwbatnetWeb.SubmissionView do
     Map.values(Swbatnet.Submissions.Values.assessment_values())
   end
 
+  def column_headers_json do
+    column_headers |> Poison.encode!
+  end
+
   def rows(review) do
     # [["swbat1", 0, 3, 1, 2], ["swbat2", 2, 2, 1, 0], ...]
     submission_histogram(review)
     |> Enum.map(fn({k, v}) -> [k | Map.values(v)] end)
+  end
+
+  def histogram_json(review) do
+    submission_histogram(review)
+      |> Poison.encode!
+  end
+
+  def goal_array(review) do
+    rows(review)
+      |> Enum.map(fn([name | _]) -> name end)
+      |> Poison.encode!
   end
 
   defp submission_histogram(review) do

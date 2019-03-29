@@ -24,3 +24,13 @@
     <% end %>
   </thead>
 </table>
+
+<div id="graph"></div>
+
+<script>
+  var App = require("js/app").App
+  var histogramData = App.htmlDecodeAsJSON("<%= histogram_json(@review) %>")
+  var keysInOrder = Array.from(App.htmlDecodeAsJSON("<%= goal_array(@review) %>"))
+  var columnHeaders = App.htmlDecodeAsJSON("<%= column_headers_json %>")
+  App.makePlot('graph', histogramData, keysInOrder, columnHeaders)
+</script>
