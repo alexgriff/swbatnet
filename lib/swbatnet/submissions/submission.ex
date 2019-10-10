@@ -5,6 +5,7 @@ defmodule Swbatnet.Submissions.Submission do
 
   schema "submissions" do
     field :results, :map
+    field :comment, :string
     belongs_to :review, Swbatnet.Reviews.Review
 
     timestamps()
@@ -12,7 +13,7 @@ defmodule Swbatnet.Submissions.Submission do
 
   def changeset(submission, attrs) do
     submission
-    |> cast(attrs, [:results, :review_id])
+    |> cast(attrs, [:results, :review_id, :comment])
     |> validate_required([:results, :review_id])
   end
 end

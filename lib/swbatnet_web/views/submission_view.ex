@@ -40,4 +40,10 @@ defmodule SwbatnetWeb.SubmissionView do
     end)
     |> Map.new
   end
+
+  def comments(review) do
+    review.submissions
+    |> Enum.map(fn submission -> submission.comment end)
+    |> Enum.filter(fn comment -> comment end)
+  end
 end

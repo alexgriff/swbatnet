@@ -8,9 +8,14 @@ defmodule SwbatnetWeb.SubmissionController do
   end
 
   def create(conn, %{"submission" => results, "id" => review_id}) do
+    # I'm sure there is a more Elixir-y way to do this...
+    %{"comment" => comment} = results
+    results = Map.delete(results, "comment")
+
     {:ok, submission} =
-      Swbatnet.Submissions.create(%{review_id: review_id, results: results})
+      Swbatnet.Submissions.create(%{review_id: review_id, results: results, comment: comment})
 
     redirect conn, to: "/thanks"
   end
 end
+

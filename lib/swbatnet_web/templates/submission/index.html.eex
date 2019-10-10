@@ -24,3 +24,12 @@
     <% end %>
   </thead>
 </table>
+
+<h4>Lecture Feedback</h4>
+<hr />
+<%= for comment <- comments(@review) do %>
+  <p>
+    <%= comment %>
+  </p>
+  <hr />
+<% end %>

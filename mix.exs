@@ -43,7 +43,8 @@ defmodule Swbatnet.Mixfile do
       {:cowboy, "~> 1.0"},
       {:plug_cowboy, "~> 1.0"},
       {:ueberauth_github, "~> 0.5"},
-      {:httpoison, "~> 1.5"}
+      {:httpoison, "~> 1.5"},
+      {:hackney, github: "benoitc/hackney", override: true} # https://github.com/benoitc/hackney/issues/591
     ]
   end
 
