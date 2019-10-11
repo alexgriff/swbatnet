@@ -29,6 +29,11 @@
         <% end %>
       </div>
     <% end %>
+    <div class="form-group" style="padding: 10px">
+      <%= label f, :comment, class: "control-label" %>
+      <%= textarea f, :comment, class: "form-control", placeholder: 'Comment' %>
+      <p class="help-block">Enter any additional lecture feedback. </p>
+    <div>
     <%= submit "Submit My Self Assessment", class: "btn btn-primary" %>
   <% end %>
 </div>
